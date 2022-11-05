@@ -8,10 +8,35 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+
+// layers
+#define DEFAULT 0 // XOY
+#define CDH     1
+#define NUM     2
+#define NAV     3
+#define FUN     4
+
+// mod-tap combinations
+#define CH LCTRL H
+#define AA LALT A
+#define GE LGUI E
+#define SI LSHFT I
+
+#define CS LCTRL S
+#define AN LALT N
+#define GR LGUI R
+#define ST LSHFT T
+
+// mod-tap config
 &mt {
   //  flavor = "tap-preferred";
   // tapping_term_ms = <200>;
 };
+
+// caps-word config
+// &caps_word {
+//     continue-list = <UNDERSCORE MINUS >;
+// };
 
 / {
     combos {
@@ -53,19 +78,59 @@
       };
     };
 
+    behaviors {
+      tddc: tap_dance_0 {
+          compatible = "zmk,behavior-tap-dance";
+          label = "TAP_DANCE_0";
+          #binding-cells = <0>;
+          tapping-term-ms = <200>;
+          bindings = <&kp DOT>, <&kp COLON>, <&kp DOT>; // make triple dot work?
+      };
+
+      tdcs: tap_dance_1 {
+          compatible = "zmk,behavior-tap-dance";
+          label = "TAP_DANCE_1";
+          #binding-cells = <0>;
+          tapping-term-ms = <200>;
+          bindings = <&kp COMMA>, <&kp SEMI>, <&kp COMMA>;
+      };
+    };
+
     keymap {
       compatible = "zmk,keymap";
-                
-      default_layer {
+
+      // old default
+      // xoy {
+      //   bindings = <
+      //     &kp X &kp : . &kp O  &kp ; , &kp Y       &kp V    &kp G    &kp C &kp L &kp J 
+      //     &kp H &kp A   &kp E  &kp I   &kp U       &kp D    &kp T    &kp R &kp N &kp S
+      //     &mt K &kp Q   &kp AE &kp UE  &kp OE			&kp B    &kp P    &kp W &kp M &mt Z
+      //                          &kp SPC &kp RET     &kp LSFT &kp BKSP 
+      //   >;
+		  // };
+
+      // 0 - updated XOY for less keys
+      xoy {
         bindings = <
-          &kp Q      &kp W &kp E &kp R &kp T        &kp Y   &kp U &kp I    &kp O   &kp P 
-          &kp A      &kp S &kp D &kp F &kp G        &kp H   &kp J &kp K    &kp L   &kp QUOT
-          &mt LSFT Z &kp X &kp C &kp V &kp B				&kp N   &kp M &kp CMMA &kp DOT &mt LSFT RET
-                                 &mo 1 &bootloader     &bootloader &mo 2 
+          &kp ESC &kp Z  &kp O  &kp F   &kp Y       &kp V    &kp G    &kp C  &kp L  &kp SLASH
+          &mt CH  &mt AA &mt GE &mt SI  &kp U       &kp D    &mt ST   &mt GR &mt AN &mt CS
+          &tdcs   &kp K  &kp Q  &kp J   &kp X		    &kp B    &kp P    &kp W  &kp M  &tddc
+                                &kp SPC &kp RET     &kp LSFT &kp BKSP 
         >;
 		  };
 
-      left_layer {
+      // 1 - Colemak Mod-DH
+      cdh {
+        bindings = <
+          &kp Q      &kp W &kp F &kp P &kp B        &kp J   &kp L &kp U    &kp Y   &kp SCLN 
+          &kp A      &kp R &kp S &kp T &kp G        &kp M   &kp N &kp E    &kp I   &kp O
+          &mt LSFT Z &kp X &kp C &kp D &kp V				&kp K   &kp H &kp CMMA &kp DOT &mt LSFT SLASH
+                                 &mo 1 &bootloader  &bootloader &mo 2 
+        >;
+		  };
+
+      // 2
+      num {
         bindings = <
           &kp NUM_1 &kp NUM_2 &kp NUM_3       &kp NUM_4       &kp NUM_5		      &kp NUM_6 &kp NUM_7 &kp NUM_8 &kp NUM_9 &kp NUM_0 
           &kp TAB   &kp LC(S) &kp DQT         &kp PIPE2       &kp HASH 		      &kp MINUS &kp EQL   &kp LBKT  &kp RBKT  &kp DEL 
@@ -74,7 +139,8 @@
         >;
       };
 		
-		  right_layer {
+      // 3
+		  nav {
         bindings = <
           &kp BANG  &kp ATSN  &kp HASH &kp DLLR &kp PRCT    	&kp CRRT  &kp AMPS     &kp KMLT &kp LPRN &kp RPRN 
           &kp HASH  &kp QMARK &kp FSLH &kp COLN &kp SCLN      &kp MINUS &kp KP_EQUAL &kp LBRC &kp RBRC &kp BKSP
@@ -83,6 +149,7 @@
         >;
 		  };	
 		
+      // 4
 		  tri_layer {
         bindings = <
           &kp NUM_1  &kp NUM_2  &kp NUM_3  &kp NUM_4 &kp NUM_5      &trans      &trans     &trans       &trans     &trans
