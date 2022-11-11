@@ -142,7 +142,7 @@
       // 3 - media functions etc.
 		  fun {
         bindings = <
-          &bootloader &none &none &none    &none     &none &none    &none &none &none
+          &bootloader &none &none &none    &none     &none &none    &none &none &bootloader
           &none       &none &none &none    &none     &none &none    &none &none &none
           &none       &none &none &tog FUN &none     &none &tog FUN &none &none &none
                                   &trans   &none     &none &trans
