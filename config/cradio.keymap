@@ -12,9 +12,10 @@
 // layers
 #define XOY 0
 #define NUM 1
-#define NAV 2
-#define FUN 3
-#define KBD 4
+#define FN 2
+#define NAV 3
+#define FUN 4
+#define KBD 5
 
 // modifier combinations
 #define HYP LG(LS(LA(LCTRL)))
@@ -49,44 +50,44 @@
 };
 
 / {
-    combos {
-      compatible = "zmk,combos";
-      combo_esc {
-        timeout-ms = <50>;
-        key-positions = <0 1>;
-        bindings = <&kp ESC>;
-      };
-      
-      combo_tab {
-        timeout-ms = <50>;
-        key-positions = <10 11>;
-        bindings = <&kp TAB>;
-      };
-      
-      combo_ralt {
-        timeout-ms = <50>;
-        key-positions = <17 16>;
-        bindings = <&kp RALT>;
-      };
-      
-      combo_lalt {
-        timeout-ms = <50>;
-        key-positions = <11 12>;
-        bindings = <&kp LALT>;
-      };
-      
-      combo_lgui {
-        timeout-ms = <50>;
-        key-positions = <12 13>;
-        bindings = <&kp LGUI>;
-      };
-      
-      combo_rgui {
-        timeout-ms = <50>;
-        key-positions = <17 18>;
-        bindings = <&kp RGUI>;
-      };
-    };
+    // combos {
+    //   compatible = "zmk,combos";
+    //   combo_esc {
+    //     timeout-ms = <50>;
+    //     key-positions = <0 1>;
+    //     bindings = <&kp ESC>;
+    //   };
+    //   
+    //   combo_tab {
+    //     timeout-ms = <50>;
+    //     key-positions = <10 11>;
+    //     bindings = <&kp TAB>;
+    //   };
+    //   
+    //   combo_ralt {
+    //     timeout-ms = <50>;
+    //     key-positions = <17 16>;
+    //     bindings = <&kp RALT>;
+    //   };
+    //   
+    //   combo_lalt {
+    //     timeout-ms = <50>;
+    //     key-positions = <11 12>;
+    //     bindings = <&kp LALT>;
+    //   };
+    //   
+    //   combo_lgui {
+    //     timeout-ms = <50>;
+    //     key-positions = <12 13>;
+    //     bindings = <&kp LGUI>;
+    //   };
+    //   
+    //   combo_rgui {
+    //     timeout-ms = <50>;
+    //     key-positions = <17 18>;
+    //     bindings = <&kp RGUI>;
+    //   };
+    // };
 
     behaviors {
       tddc: tap_dance_0 {
@@ -125,31 +126,41 @@
           &kp KP_PLUS &kp KP_MINUS &kp KP_MULTIPLY &kp KP_DIVIDE &none        &kp DOT   &kp N7  &kp N8 &kp N9 &none
           &sk LCTRL   &sk LALT     &sk LGUI        &sk LSHFT     &none 	      &kp COMMA &kp N4  &kp N5 &kp N6 &none
           &none       &none        &none           &tog NUM      &tog XOY     &kp N0    &kp N1  &kp N2 &kp N3 &none
-                                                   &trans        &none  		  &none     &mo FUN 
+                                                   &trans        &none  		  &tog FN   &mo FUN 
         >;
       };
+
+      // 2 - f1-f12
+      fn {
+        bindings = <
+          &none     &none    &none    &none     &none     &none   &kp F7  &kp F8 &kp F9 &F12
+          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &none     &none   &kp F4  &kp F5 &kp F6 &F11
+          &none     &none    &none    &none     &none     &none   &kp F1  &kp F2 &kp F3 &F10
+                             &trans   &none               &tog FN &trans
+        >;
+		  };
 		
-      // 2 - navigation
+      // 3 - navigation
 		  nav {
         bindings = <
-          &none &none &none &none   &none    	&none &none     &none    &none    &none 
-          &none &none &none &none   &none     &none &sk LSHFT &sk LGUI &sk LALT &sk LCTRL
-          &none &none &none &none   &none    	&none &tog NAV  &none    &none    &none
-                            &mo FUN &sk HYP  	&none &trans 
+          &none  &none &none &none   &none    	&none &none     &none    &none    &none 
+          &none  &none &none &none   &none      &none &sk LSHFT &sk LGUI &sk LALT &sk LCTRL
+          &kp N2 &none &none &none   &none    	&none &tog NAV  &none    &none    &kp N2
+                             &mo FUN &sk HYP  	&none &trans 
         >;
 		  };	
 		
-      // 3 - media functions etc.
+      // 4 - media functions etc.
 		  fun {
         bindings = <
           &bootloader &none &none &none    &none     &none &none    &none &none &bootloader
           &none       &none &none &none    &none     &none &none    &none &none &none
-          &none       &none &none &tog FUN &none     &none &tog FUN &none &none &none
+          &kp N3      &none &none &tog FUN &none     &none &tog FUN &none &none &kp N3
                                   &trans   &none     &none &trans
         >;
 		  };
 
-      // 4 - keyboard functions
+      // 5 - keyboard functions
 		  kbd {
         bindings = <
           &none &none &none &none &none     &none &none &none &none &none
@@ -158,5 +169,15 @@
                             &none &none     &none &none
         >;
 		  };
+
+      // empty template
+		  // empty {
+      //   bindings = <
+      //     &none &none &none &none &none     &none &none &none &none &none
+      //     &none &none &none &none &none     &none &none &none &none &none
+      //     &none &none &none &none &none     &none &none &none &none &none
+      //                       &none &none     &none &none
+      //   >;
+		  // };
 	};
 };
