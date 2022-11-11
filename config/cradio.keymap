@@ -11,10 +11,14 @@
 
 // layers
 #define DEFAULT 0 // XOY
-#define CDH     1
-#define NUM     2
-#define NAV     3
-#define FUN     4
+// #define CDH     1
+#define NUM     1
+#define NAV     2
+#define FUN     3
+#define KBD     4
+
+// modifier combinations
+#define HYP LG(LS(LA(LCTRL)))
 
 // mod-tap combinations
 #define CH LCTRL H
@@ -37,6 +41,13 @@
 // &caps_word {
 //     continue-list = <UNDERSCORE MINUS >;
 // };
+
+// sticky-key config
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+    /delete-property/ ignore-modifiers;
+};
 
 / {
     combos {
@@ -99,63 +110,53 @@
     keymap {
       compatible = "zmk,keymap";
 
-      // old default
-      // xoy {
-      //   bindings = <
-      //     &kp X &kp : . &kp O  &kp ; , &kp Y       &kp V    &kp G    &kp C &kp L &kp J 
-      //     &kp H &kp A   &kp E  &kp I   &kp U       &kp D    &kp T    &kp R &kp N &kp S
-      //     &mt K &kp Q   &kp AE &kp UE  &kp OE			&kp B    &kp P    &kp W &kp M &mt Z
-      //                          &kp SPC &kp RET     &kp LSFT &kp BKSP 
-      //   >;
-		  // };
-
       // 0 - updated XOY for less keys
       xoy {
         bindings = <
-          &kp ESC &kp Z  &kp O  &kp F   &kp Y       &kp V    &kp G    &kp C  &kp L  &kp SLASH
-          &mt CH  &mt AA &mt GE &mt SI  &kp U       &kp D    &mt ST   &mt GR &mt AN &mt CS
-          &tdcs   &kp K  &kp Q  &kp J   &kp X		    &kp B    &kp P    &kp W  &kp M  &tddc
-                                &kp SPC &kp RET     &kp LSFT &kp BKSP 
+          &kp ESC &kp Z  &kp O  &kp F       &kp Y       &kp V    &kp G        &kp C  &kp L  &kp SLASH
+          &mt CH  &mt AA &mt GE &mt SI      &kp U       &kp D    &mt ST       &mt GR &mt AN &mt CS
+          &tdcs   &kp K  &kp Q  &kp J       &kp X		    &kp B    &kp P        &kp W  &kp M  &tddc
+                                &lt NUM SPC &kp RET     &kp LSFT &lt NAV BKSP 
         >;
 		  };
 
-      // 1 - Colemak Mod-DH
-      cdh {
-        bindings = <
-          &kp Q      &kp W &kp F &kp P &kp B        &kp J   &kp L &kp U    &kp Y   &kp SCLN 
-          &kp A      &kp R &kp S &kp T &kp G        &kp M   &kp N &kp E    &kp I   &kp O
-          &mt LSFT Z &kp X &kp C &kp D &kp V				&kp K   &kp H &kp CMMA &kp DOT &mt LSFT SLASH
-                                 &mo 1 &bootloader  &bootloader &mo 2 
-        >;
-		  };
-
-      // 2
+      // 1 - numbers and symbols
       num {
         bindings = <
-          &kp NUM_1 &kp NUM_2 &kp NUM_3       &kp NUM_4       &kp NUM_5		      &kp NUM_6 &kp NUM_7 &kp NUM_8 &kp NUM_9 &kp NUM_0 
-          &kp TAB   &kp LC(S) &kp DQT         &kp PIPE2       &kp HASH 		      &kp MINUS &kp EQL   &kp LBKT  &kp RBKT  &kp DEL 
-          &kp ESC   &kp TILDE &kp NON_US_BSLH &kp NON_US_HASH &kp TILDE2 	      &kp MINUS &kp GRAVE &kp LBKT  &kp RBKT  &kp DEL 
-                                              &mo 1           &kp LGUI  				&kp RGUI  &mo 2 
+          &none     &none    &none    &kp NUM_4 &kp NUM_5		  &kp DOT   &kp N7 &kp N8 &kp N9 &none
+          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &kp HASH 		  &kp COMMA &kp N4 &kp N5 &kp N6 &none
+          &none     &none    &none    &tog NUM  &tog XOY 	    &kp N0    &kp N1 &kp N2 &kp N3 &none
+                                      &trans    &none  				&none     &mo FUN 
         >;
       };
 		
-      // 3
+      // 2 - navigation
 		  nav {
         bindings = <
-          &kp BANG  &kp ATSN  &kp HASH &kp DLLR &kp PRCT    	&kp CRRT  &kp AMPS     &kp KMLT &kp LPRN &kp RPRN 
-          &kp HASH  &kp QMARK &kp FSLH &kp COLN &kp SCLN      &kp MINUS &kp KP_EQUAL &kp LBRC &kp RBRC &kp BKSP
-          &kp LSFT  &kp KPLS  &kp LBKT &kp RBKT &kp BSLH    	&kp UNDER &kp LEFT     &kp DOWN &kp UP   &kp RIGHT
-                                       &mo 3    &kp LCTL  		&kp SPC   &mo 2 
+          &none &none &none &none   &none    	&none &none     &none    &none    &none 
+          &none &none &none &none   &none     &none &sk LSHFT &sk LGUI &SK LALT &sk LCTRL
+          &none &none &none &none   &none    	&none &none     &none    &none    &none
+                            &mo FUN &sk HYP  	&none &trans 
         >;
 		  };	
 		
-      // 4
-		  tri_layer {
+      // 3 - media functions etc.
+		  fun {
         bindings = <
-          &kp NUM_1  &kp NUM_2  &kp NUM_3  &kp NUM_4 &kp NUM_5      &trans      &trans     &trans       &trans     &trans
-          &kp F1     &kp F2     &kp F3     &kp F4    &kp F5  				&trans      &kp PG_UP  &kp K_VOL_UP &kp K_MUTE &trans 
-          &bt BT_CLR &bt BT_NXT &bt BT_PRV &kp F6    &kp F7   			&trans      &kp PG_DN  &kp K_VOL_DN &trans     &trans   
-                                           &trans    &trans  				&bootloader &trans 
+          &bootloader &none &none &none  &none     &none &none  &none &none &none
+          &none       &none &none &none  &none     &none &none  &none &none &none
+          &none       &none &none &none  &none     &none &none  &none &none &none
+                                  &trans &none     &none &trans
+        >;
+		  };
+
+      // 4 - keyboard functions
+		  kbd {
+        bindings = <
+          &none &none &none &none &none     &none &none &none &none &none
+          &none &none &none &none &none     &none &none &none &none &none
+          &none &none &none &none &none     &none &none &none &none &none
+                            &none &none     &none &none
         >;
 		  };
 	};
