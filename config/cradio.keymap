@@ -10,7 +10,7 @@
 
 
 // layers
-#define DEFAULT 0 // XOY
+#define XOY 0 // XOY
 // #define CDH     1
 #define NUM     1
 #define NAV     2
