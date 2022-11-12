@@ -50,8 +50,13 @@
 };
 
 / {
-    // combos {
-    //   compatible = "zmk,combos";
+    combos {
+      compatible = "zmk,combos";
+       combo_kbc {
+         timeout-ms = <50>;
+         key-positions = <0 1>;
+         bindings = <&to KBD>;
+       };
     //   combo_esc {
     //     timeout-ms = <50>;
     //     key-positions = <0 1>;
@@ -87,7 +92,7 @@
     //     key-positions = <17 18>;
     //     bindings = <&kp RGUI>;
     //   };
-    // };
+    };
 
     behaviors {
       tddc: tap_dance_0 {
@@ -133,9 +138,9 @@
       // 2 - f1-f12
       fn {
         bindings = <
-          &none     &none    &none    &none     &none     &none   &kp F7  &kp F8 &kp F9 &F12
-          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &none     &none   &kp F4  &kp F5 &kp F6 &F11
-          &none     &none    &none    &none     &none     &none   &kp F1  &kp F2 &kp F3 &F10
+          &none     &none    &none    &none     &none     &none   &kp F7  &kp F8 &kp F9 &kp F12
+          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &none     &none   &kp F4  &kp F5 &kp F6 &kp F11
+          &kp N2    &none    &none    &none     &none     &none   &kp F1  &kp F2 &kp F3 &kp F10
                              &trans   &none               &tog FN &trans
         >;
 		  };
@@ -145,7 +150,7 @@
         bindings = <
           &none  &none &none &none   &none    	&none &none     &none    &none    &none 
           &none  &none &none &none   &none      &none &sk LSHFT &sk LGUI &sk LALT &sk LCTRL
-          &kp N2 &none &none &none   &none    	&none &tog NAV  &none    &none    &kp N2
+          &kp N3 &none &none &none   &none    	&none &tog NAV  &none    &none    &kp N3
                              &mo FUN &sk HYP  	&none &trans 
         >;
 		  };	
@@ -153,20 +158,20 @@
       // 4 - media functions etc.
 		  fun {
         bindings = <
-          &bootloader &none &none &none    &none     &none &none    &none &none &bootloader
-          &none       &none &none &none    &none     &none &none    &none &none &none
-          &kp N3      &none &none &tog FUN &none     &none &tog FUN &none &none &kp N3
-                                  &trans   &none     &none &trans
+          &none  &none &none &none    &none     &none &none    &none &none &none
+          &none  &none &none &none    &none     &none &none    &none &none &none
+          &kp N4 &none &none &tog FUN &none     &none &tog FUN &none &none &kp N4
+                             &trans   &none     &none &trans
         >;
 		  };
 
       // 5 - keyboard functions
 		  kbd {
         bindings = <
-          &none &none &none &none &none     &none &none &none &none &none
-          &none &none &none &none &none     &none &none &none &none &none
-          &none &none &none &none &none     &none &none &none &none &none
-                            &none &none     &none &none
+          &bootloader &none &none &none &none     &none &none &none &none &bootloader
+          &none       &none &none &none &none     &none &none &none &none &none
+          &kp N5      &none &none &none &none     &none &none &none &none &kp N5
+                                  &none &none     &none &none
         >;
 		  };
 
