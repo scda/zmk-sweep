@@ -31,6 +31,14 @@
 #define GR LGUI R
 #define ST LSHFT T
 
+#define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
+  combo_##NAME { \
+    timeout-ms = TIMEOUT; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <0>; \
+  };
+
 // mod-tap config
 &mt {
   flavor = "tap-preferred";
@@ -52,46 +60,10 @@
 / {
     combos {
       compatible = "zmk,combos";
-       combo_kbc {
-         timeout-ms = <50>;
-         key-positions = <0 1>;
-         bindings = <&to KBD>;
-       };
-    //   combo_esc {
-    //     timeout-ms = <50>;
-    //     key-positions = <0 1>;
-    //     bindings = <&kp ESC>;
-    //   };
-    //   
-    //   combo_tab {
-    //     timeout-ms = <50>;
-    //     key-positions = <10 11>;
-    //     bindings = <&kp TAB>;
-    //   };
-    //   
-    //   combo_ralt {
-    //     timeout-ms = <50>;
-    //     key-positions = <17 16>;
-    //     bindings = <&kp RALT>;
-    //   };
-    //   
-    //   combo_lalt {
-    //     timeout-ms = <50>;
-    //     key-positions = <11 12>;
-    //     bindings = <&kp LALT>;
-    //   };
-    //   
-    //   combo_lgui {
-    //     timeout-ms = <50>;
-    //     key-positions = <12 13>;
-    //     bindings = <&kp LGUI>;
-    //   };
-    //   
-    //   combo_rgui {
-    //     timeout-ms = <50>;
-    //     key-positions = <17 18>;
-    //     bindings = <&kp RGUI>;
-    //   };
+      
+      COMBO(kbd, &to KBD, 100, 0 9 30 36)
+      COMBO(esc, &kp ESC, 50, 10 19)
+      COMBO(tab, &kp TAB, 50, 13 16)
     };
 
     behaviors {
@@ -168,10 +140,10 @@
       // 5 - keyboard functions
 		  kbd {
         bindings = <
-          &bootloader &none &none &none &none     &none &none &none &none &bootloader
-          &none       &none &none &none &none     &none &none &none &none &none
-          &kp N5      &none &none &none &none     &none &none &none &none &kp N5
-                                  &none &none     &none &none
+          &bootloader &none &none &none   &none       &none   &none &none &none &bootloader
+          &none       &none &none &none   &none       &none   &none &none &none &none
+          &kp N5      &none &none &none   &none       &none   &none &none &none &kp N5
+                                  &to XOY &to XOY     &to XOY &to XOY
         >;
 		  };
 
