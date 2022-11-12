@@ -33,7 +33,7 @@
 
 #define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
   combo_##NAME { \
-    timeout-ms = TIMEOUT; \
+    timeout-ms = <TIMEOUT>; \
     bindings = <BINDINGS>; \
     key-positions = <KEYPOS>; \
     layers = <0>; \
@@ -62,7 +62,7 @@
       compatible = "zmk,combos";
       
       // try not to use home-row keys, due to mods!
-      COMBO(kbd, &to KBD, 100, 0 9 29)
+      COMBO(kbd, &to KBD, 100, 0 9 20 29)
       COMBO(esc, &kp ESC, 50, 10 19)
       COMBO(tab, &kp TAB, 50, 14 15)
       COMBO(minus, &kp MINUS, 50, 22 27)
