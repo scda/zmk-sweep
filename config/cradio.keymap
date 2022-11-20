@@ -67,7 +67,7 @@
       COMBO(copy, &kp LG(C), 50, 2 7)
       COMBO(past, &kp LG(V), 50, 3 6)
       COMBO(tab, &kp TAB, 50, 14 15)
-      COMBO(del, &kp TAB, 50, 14 15)
+      COMBO(del, &kp DEL, 50, 24 25)
       COMBO(minus, &kp MINUS, 50, 22 27)
       COMBO(underscore, &kp UNDER, 50, 23 26)
       COMBO(caps, &caps_word, 50, 20 29)
