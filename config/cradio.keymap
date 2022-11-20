@@ -61,8 +61,9 @@
     combos {
       compatible = "zmk,combos";
       
-      // try not to use home-row-mod keys (10-13 + 16-19)
-      COMBO(fun, &to FUN, 100, 0 4 5 9)
+      // do not use home-row-mod keys (10-13 + 16-19)
+      COMBO(funl, &to FUN, 100, 0 4)
+      COMBO(funr, &to FUN, 100, 5 9)
       COMBO(undo, &kp LG(Z), 50, 0 9)
       COMBO(cut, &kp LG(X), 50, 1 8)
       COMBO(copy, &kp LG(C), 50, 2 7)
@@ -148,7 +149,7 @@
       // 5 - media functions etc.
 		  fun {
         bindings = <
-          &none       &kp C_BRI_DEC &kp C_BRI_MIN &kp C_BRI_INC &none       &none   &none   &none &none &kp C_AL_LOCK
+          &none       &kp C_BRI_DEC &kp C_BRI_MIN &kp C_BRI_INC &none       &none   &none   &none &none &kp LG(LC(Q))
           &none       &kp C_PREV    &kp C_PP      &kp C_NEXT    &none       &none   &none   &none &none &none
           &bootloader &kp C_VOL_DN  &kp C_MUTE    &kp C_VOL_UP  &none       &none   &none   &none &none &bootloader
                                                   &to ZOF       &to ZOF     &to ZOF &to ZOF
