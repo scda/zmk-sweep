@@ -10,7 +10,7 @@
 
 
 // layers
-#define XOY 0
+#define ZOF 0
 #define NUM 1
 #define FN 2
 #define NAV 3
@@ -91,8 +91,8 @@
     keymap {
       compatible = "zmk,keymap";
 
-      // 0 - updated XOY for less keys
-      xoy {
+      // 0 - updated ZOF for less keys
+      zof {
         bindings = <
           &kp ESC &kp Z  &kp O  &kp F       &kp Y       &kp V    &kp G        &kp C  &kp L  &kp SLASH
           &mt CH  &mt AA &mt GE &mt SI      &kp U       &kp D    &mt ST       &mt GR &mt AN &mt CS
@@ -106,7 +106,7 @@
         bindings = <
           &kp KP_PLUS &kp KP_MINUS &kp KP_MULTIPLY &kp KP_DIVIDE &none        &kp DOT   &kp N7  &kp N8 &kp N9 &none
           &sk LCTRL   &sk LALT     &sk LGUI        &sk LSHFT     &none 	      &kp COMMA &kp N4  &kp N5 &kp N6 &none
-          &none       &none        &none           &tog NUM      &tog XOY     &kp N0    &kp N1  &kp N2 &kp N3 &none
+          &none       &none        &none           &tog NUM      &tog ZOF     &kp N0    &kp N1  &kp N2 &kp N3 &none
                                                    &trans        &none  		  &tog FN   &mo FUN 
         >;
       };
@@ -147,7 +147,7 @@
           &bootloader &none &none &none   &none       &none   &none &none &none &bootloader
           &none       &none &none &none   &none       &none   &none &none &none &none
           &kp N5      &none &none &none   &none       &none   &none &none &none &kp N5
-                                  &to XOY &to XOY     &to XOY &to XOY
+                                  &to ZOF &to ZOF     &to ZOF &to ZOF
         >;
 		  };
 
