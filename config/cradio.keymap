@@ -137,10 +137,10 @@
       // 4 - navigation
 		  nav {
         bindings = <
-          &none     &none    &none    &none     &none     &none &none    &none    &none  &none
-          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &none     &none &kp LEFT &kp DOWN &kp UP &kp RIGHT
-          &none     &none    &none    &none     &none     &none &none    &none    &none  &none
-                                      &trans    &sk HYP   &none &trans
+          &kp LG(NUBS) &none    &none    &none     &none     &none &kp HOME &kp PG_DN &kp PG_UP &kp END
+          &sk LCTRL    &sk LALT &sk LGUI &sk LSHFT &none     &none &kp LEFT &kp DOWN  &kp UP    &kp RIGHT
+          &none        &none    &none    &none     &none     &none &none    &none     &none     &none
+                                      &trans    &sk HYP      &none &trans
         >;
 		  };
 		
