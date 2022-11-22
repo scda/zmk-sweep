@@ -129,7 +129,7 @@
         bindings = <
           &kp PIPE &kp DLLR  &kp LBRC &kp RBRC &kp PRCNT      &kp KP_PLUS  &kp LT    &kp GT   &kp TILDE &kp CARET
           &kp EXCL &kp QMARK &kp LPAR &kp RPAR &kp ASTRK      &kp KP_EQUAL &sk LSHFT &sk LGUI &sk LALT  &sk LCTRL
-          &kp BSLH &kp AMPS  &kp LBKT &kp RBKT &kp HASH     	&kp AT       &kp DQT   &kp SQT  &kp GRAVE &kp LA(LS(2))
+          &kp BSLH &kp AMPS  &kp LBKT &kp RBKT &kp HASH     	&kp AT       &kp DQT   &kp SQT  &kp GRAVE &kp LA(LS(N2))
                                       &mo NAV  &trans         &trans       &trans 
         >;
 		  };	
