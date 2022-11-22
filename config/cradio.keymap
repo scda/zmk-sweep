@@ -56,6 +56,15 @@
 };
 
 / {
+    macros {
+      tridot: tripple_dot {
+        label = "tripple_dot";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp DOT &kp DOT &kp DOT>;
+      };
+    }
+  
     combos {
       compatible = "zmk,combos";
       
@@ -79,7 +88,7 @@
           label = "TAP_DANCE_0";
           #binding-cells = <0>;
           tapping-term-ms = <200>;
-          bindings = <&kp DOT>, <&kp COLON>, <&kp DOT>;
+          bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
       };
 
       tdcs: tap_dance_1 {
