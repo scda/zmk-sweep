@@ -73,6 +73,8 @@
       COMBO(funr, &to FUN, 100, 5 9)
       
       COMBO(hypr, &sk HYP, 50, 4 5)
+      COMBO(caps, &caps_word, 50, 20 29)
+      
       COMBO(undo, &kp LG(Z), 50, 0 9)
       COMBO(cut, &kp LG(X), 50, 1 8)
       COMBO(copy, &kp LG(C), 50, 2 7)
@@ -82,8 +84,6 @@
       COMBO(del, &kp DEL, 50, 24 25)
       COMBO(minus, &kp MINUS, 50, 22 27)
       COMBO(underscore, &kp UNDER, 50, 23 26)
-
-      COMBO(caps, &caps_word, 50, 20 29)
     };
 
     behaviors {
