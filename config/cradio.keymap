@@ -71,14 +71,18 @@
       // do not use home-row-mod keys (10-13 + 16-19)
       COMBO(funl, &to FUN, 100, 0 4)
       COMBO(funr, &to FUN, 100, 5 9)
+      
+      COMBO(undo, &sk HYP, 50, 4 5)
       COMBO(undo, &kp LG(Z), 50, 0 9)
       COMBO(cut, &kp LG(X), 50, 1 8)
       COMBO(copy, &kp LG(C), 50, 2 7)
       COMBO(past, &kp LG(V), 50, 3 6)
+      
       COMBO(tab, &kp TAB, 50, 14 15)
       COMBO(del, &kp DEL, 50, 24 25)
       COMBO(minus, &kp MINUS, 50, 22 27)
       COMBO(underscore, &kp UNDER, 50, 23 26)
+
       COMBO(caps, &caps_word, 50, 20 29)
     };
 
@@ -146,10 +150,10 @@
       // 4 - navigation
 		  nav {
         bindings = <
-          &kp LG(NUBS) &none    &none    &none     &none     &none &kp HOME     &kp PG_DN         &kp PG_UP            &kp END
-          &sk LCTRL    &sk LALT &sk LGUI &sk LSHFT &none     &none &kp LEFT     &kp DOWN          &kp UP               &kp RIGHT
-          &none        &none    &none    &none     &none     &none &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT))    &kp LA(RIGHT)
-                                      &trans    &sk HYP      &none &trans
+          &kp LG(NUBS) &none    &none    &none     &none        &none &kp HOME     &kp PG_DN         &kp PG_UP            &kp END
+          &sk LCTRL    &sk LALT &sk LGUI &sk LSHFT &sk HYP      &none &kp LEFT     &kp DOWN          &kp UP               &kp RIGHT
+          &none        &none    &none    &none     &none        &none &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT))    &kp LA(RIGHT)
+                                         &trans    &trans       &none &trans
         >;
 		  };
 		
