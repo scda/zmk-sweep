@@ -63,7 +63,7 @@
         #binding-cells = <0>;
         bindings = <&kp DOT &kp DOT &kp DOT>;
       };
-    }
+    };
   
     combos {
       compatible = "zmk,combos";
