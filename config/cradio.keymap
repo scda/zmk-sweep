@@ -112,7 +112,7 @@
         bindings = <
           &kp ESC &kp Z  &kp O  &kp F       &kp Y       &kp V    &kp G        &kp C  &kp L  &kp SLASH
           &mt CH  &mt AA &mt GE &mt SI      &kp U       &kp D    &mt ST       &mt GR &mt AN &mt CS
-          &tdcs   &kp J  &kp Q  &kp K       &kp X		    &kp B    &kp P        &kp W  &kp M  &tddc
+          &tdcs   &kp Q  &kp J  &kp K       &kp X		    &kp B    &kp P        &kp W  &kp M  &tddc
                                 &lt NUM SPC &kp RET     &kp LSFT &lt SYM BKSP 
         >;
 		  };
