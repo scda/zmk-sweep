@@ -87,20 +87,53 @@
     };
 
     behaviors {
-      tddc: tap_dance_0 {
-          compatible = "zmk,behavior-tap-dance";
-          label = "TAP_DANCE_0";
-          #binding-cells = <0>;
-          tapping-term-ms = <300>;
-          bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
+      gqt: global-quick-tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "GLOBAL_QUICK_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <125>;
+        global-quick-tap;
+        bindings = <&kp>, <&kp>;
       };
 
-      tdcs: tap_dance_1 {
-          compatible = "zmk,behavior-tap-dance";
-          label = "TAP_DANCE_1";
-          #binding-cells = <0>;
-          tapping-term-ms = <300>;
-          bindings = <&kp COMMA>, <&kp SEMI>;
+      lmt: left_hand_positional_hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "LEFT_POSITIONAL_HOLD_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-unless-interrupted";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <150>;
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36>;
+      };
+
+      rmt: right_hand_positional_hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "RIGHT_POSITIONAL_HOLD_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-unless-interrupted";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <150>;
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;
+      };
+
+      tddc: dot-tap-dance {
+        compatible = "zmk,behavior-tap-dance";
+        label = "DOT_TAP_DANCE";
+        #binding-cells = <0>;
+        tapping-term-ms = <300>;
+        bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
+      };
+
+      tdcs: com-tap-dance {
+        compatible = "zmk,behavior-tap-dance";
+        label = "COM_TAP_DANCE";
+        #binding-cells = <0>;
+        tapping-term-ms = <300>;
+        bindings = <&kp COMMA>, <&kp SEMI>;
       };
     };
 
@@ -110,10 +143,10 @@
       // 0 - updated ZOF for less keys
       zof {
         bindings = <
-          &kp ESC &kp Z  &kp O  &kp F       &kp Y       &kp V    &kp G        &kp C  &kp L  &kp SLASH
-          &mt CH  &mt AA &mt GE &mt SI      &kp U       &kp D    &mt ST       &mt GR &mt AN &mt CS
-          &tdcs   &kp Q  &kp J  &kp K       &kp X		    &kp B    &kp P        &kp W  &kp M  &tddc
-                                &lt NUM SPC &kp RET     &kp LSFT &lt SYM BKSP 
+          &kp ESC  &kp Z   &kp O   &kp F       &kp Y        &kp V    &kp G        &kp C   &kp L   &kp SLASH
+          &lmt CH  &lmt AA &lmt GE &lmt SI     &kp U        &kp D    &rmt ST      &rmt GR &rmt AN &rmt CS
+          &tdcs    &kp Q   &kp J   &kp K       &kp X		    &kp B    &kp P        &kp W   &kp M   &tddc
+                                   &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP 
         >;
 		  };
 
