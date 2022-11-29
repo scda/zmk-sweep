@@ -72,18 +72,18 @@
       COMBO(funl, &to FUN, 100, 0 4)
       COMBO(funr, &to FUN, 100, 5 9)
       
-      COMBO(hypr, &sk HYP, 50, 4 5)
-      COMBO(caps, &caps_word, 50, 20 29)
+      COMBO(hypr, &sk HYP, 100, 4 5)
+      COMBO(caps, &caps_word, 100, 20 29)
       
-      COMBO(undo, &kp LG(Z), 50, 0 9)
-      COMBO(cut, &kp LG(X), 50, 1 8)
-      COMBO(copy, &kp LG(C), 50, 2 7)
-      COMBO(past, &kp LG(V), 50, 3 6)
+      COMBO(undo, &kp LG(Z), 100, 0 9)
+      COMBO(cut, &kp LG(X), 100, 1 8)
+      COMBO(copy, &kp LG(C), 100, 2 7)
+      COMBO(past, &kp LG(V), 100, 3 6)
       
-      COMBO(tab, &kp TAB, 50, 14 15)
-      COMBO(del, &kp DEL, 50, 24 25)
-      COMBO(minus, &kp MINUS, 50, 23 26)
-      COMBO(underscore, &kp UNDER, 50, 22 27)
+      COMBO(tab, &kp TAB, 100, 14 15)
+      COMBO(del, &kp DEL, 100, 24 25)
+      COMBO(minus, &kp MINUS, 100, 23 26)
+      COMBO(underscore, &kp UNDER, 100, 22 27)
     };
 
     behaviors {
@@ -91,7 +91,7 @@
           compatible = "zmk,behavior-tap-dance";
           label = "TAP_DANCE_0";
           #binding-cells = <0>;
-          tapping-term-ms = <200>;
+          tapping-term-ms = <300>;
           bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
       };
 
@@ -99,7 +99,7 @@
           compatible = "zmk,behavior-tap-dance";
           label = "TAP_DANCE_1";
           #binding-cells = <0>;
-          tapping-term-ms = <200>;
+          tapping-term-ms = <300>;
           bindings = <&kp COMMA>, <&kp SEMI>;
       };
     };
