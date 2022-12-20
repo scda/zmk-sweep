@@ -20,25 +20,6 @@
 // modifier combinations
 #define HYP LG(LS(LA(LCTRL)))
 
-#define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
-  combo_##NAME { \
-    timeout-ms = <TIMEOUT>; \
-    bindings = <BINDINGS>; \
-    key-positions = <KEYPOS>; \
-    layers = <0>; \
-  };
-
-// mod-tap config
-&mt {
-  flavor = "tap-preferred";
-  tapping_term_ms = <300>;
-};
-
-// caps-word config
-&caps_word {
-    continue-list = <UNDERSCORE MINUS BACKSPACE>;
-};
-
 // sticky-key config
 &sk {
     release-after-ms = <2000>;
