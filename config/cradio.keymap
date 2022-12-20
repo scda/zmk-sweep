@@ -20,17 +20,6 @@
 // modifier combinations
 #define HYP LG(LS(LA(LCTRL)))
 
-// mod-tap combinations
-#define CH LCTRL H
-#define AA LALT A
-#define GE LGUI E
-#define SI LSHFT I
-
-#define CS LCTRL S
-#define AN LALT N
-#define GR LGUI R
-#define ST LSHFT T
-
 #define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
   combo_##NAME { \
     timeout-ms = <TIMEOUT>; \
@@ -98,28 +87,6 @@
         bindings = <&kp>, <&kp>;
       };
 
-      lmt: left_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "LEFT_POSITIONAL_HOLD_TAP";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <150>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36>;
-      };
-
-      rmt: right_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "RIGHT_POSITIONAL_HOLD_TAP";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <150>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;
-      };
-
       tddc: dot-tap-dance {
         compatible = "zmk,behavior-tap-dance";
         label = "DOT_TAP_DANCE";
@@ -143,10 +110,10 @@
       // 0 - updated ZOF for less keys
       zof {
         bindings = <
-          &kp ESC  &kp Z   &kp O   &kp F       &kp Y        &kp V    &kp G        &kp C   &kp L   &kp SLASH
-          &lmt CH  &lmt AA &lmt GE &lmt SI     &kp U        &kp D    &rmt ST      &rmt GR &rmt AN &rmt CS
-          &tdcs    &kp Q   &kp J   &kp K       &kp X		    &kp B    &kp P        &kp W   &kp M   &tddc
-                                   &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP 
+          &kp ESC &kp Z &kp O &kp F       &kp Y        &kp V    &kp G        &kp C &kp L &kp SLASH
+          &kp H   &kp A &kp E &kp I       &kp U        &kp D    &kp T        &kp R &kp N &kp S
+          &tdcs   &kp Q &kp J &kp K       &kp X		     &kp B    &kp P        &kp W &kp M &tddc
+                              &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP 
         >;
 		  };
 
