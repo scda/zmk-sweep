@@ -11,6 +11,7 @@
 // timeouts
 #define COMBO_TIMEOUT 100
 #define DEFAULT_TAP_TERM 200
+#define DOUBLE_TAP_TERM 300
 #define MOD_TAP_TERM DEFAULT_TAP_TERM
 #define LAYER_TAP_TERM 200
 #define QUICK_TAP_TERM 125
@@ -106,7 +107,8 @@
         compatible = "zmk,behavior-tap-dance";
         label = "DOT_TAP_DANCE";
         #binding-cells = <0>;
-        tapping-term-ms = <DEFAULT_TAP_TERM>;
+        tapping-term-ms = <DOUBLE_TAP_TERM>;
+        quick-tap-ms = <10>;
         bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
       };
 
@@ -114,7 +116,8 @@
         compatible = "zmk,behavior-tap-dance";
         label = "COM_TAP_DANCE";
         #binding-cells = <0>;
-        tapping-term-ms = <DEFAULT_TAP_TERM>;
+        tapping-term-ms = <DOUBLE_TAP_TERM>;
+        quick-tap-ms = <10>;
         bindings = <&kp COMMA>, <&kp SEMI>;
       };
     };
