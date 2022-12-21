@@ -108,7 +108,6 @@
         label = "DOT_TAP_DANCE";
         #binding-cells = <0>;
         tapping-term-ms = <DOUBLE_TAP_TERM>;
-        quick-tap-ms = <10>; // set too low to ever activate
         bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
       };
 
@@ -117,7 +116,6 @@
         label = "COM_TAP_DANCE";
         #binding-cells = <0>;
         tapping-term-ms = <DOUBLE_TAP_TERM>;
-        quick-tap-ms = <10>; // set too low to ever activate
         bindings = <&kp COMMA>, <&kp SEMI>;
       };
     };
