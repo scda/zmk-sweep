@@ -28,6 +28,9 @@
 // modifier combinations
 #define HYP LG(LS(LA(LCTRL)))
 
+// special mac combinations
+#define LOCK LG(LC(Q))
+
 // mod-tap combinations
 #define CH LCTRL H
 #define AA LALT A
@@ -39,6 +42,7 @@
 #define GR LGUI R
 #define ST LSHFT T
 
+// helper for easier and shorter combo definitions 
 #define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
   combo_##NAME { \
     timeout-ms = <TIMEOUT>; \
@@ -76,15 +80,9 @@
     combos {
       compatible = "zmk,combos";
 
-      // do not use home-row-mod keys (10-13 + 16-19)
       COMBO(hypr, &sk HYP, COMBO_TIMEOUT, 4 5)
       COMBO(caps, &caps_word, COMBO_TIMEOUT, 20 29)
-
       COMBO(undo, &kp LG(Z), COMBO_TIMEOUT, 0 9)
-      COMBO(cut, &kp LG(X), COMBO_TIMEOUT, 1 8)
-      COMBO(copy, &kp LG(C), COMBO_TIMEOUT, 2 7)
-      COMBO(past, &kp LG(V), COMBO_TIMEOUT, 3 6)
-
       COMBO(tab, &kp TAB, COMBO_TIMEOUT, 14 15)
       COMBO(del, &kp DEL, COMBO_TIMEOUT, 24 25)
       COMBO(minus, &kp MINUS, COMBO_TIMEOUT, 23 26)
@@ -128,7 +126,7 @@
         bindings = <
           &kp ESC  &kp Z   &kp O   &kp F       &kp Y        &kp V    &kp G        &kp C   &kp L   &kp SLASH
           &mt CH   &mt AA  &mt GE  &mt SI      &kp U        &kp D    &mt ST       &mt GR  &mt AN  &mt CS
-          &tdcs    &kp Q   &kp J   &kp K       &kp X		&kp B    &kp P        &kp W   &kp M   &tddc
+          &tdcs    &kp Q   &kp J   &kp K       &kp X		    &kp B    &kp P        &kp W   &kp M   &tddc
                                    &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP
         >;
 		  };
@@ -166,17 +164,17 @@
       // 4 - navigation
 		  nav {
         bindings = <
-          &kp LG(NUBS) &none    &none    &none     &none        &none &kp HOME     &kp PG_DN         &kp PG_UP            &kp END
-          &sk LCTRL    &sk LALT &sk LGUI &sk LSHFT &sk HYP      &none &kp LEFT     &kp DOWN          &kp UP               &kp RIGHT
-          &to FUN      &none    &none    &none     &none        &none &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT))    &kp LA(RIGHT)
-                                         &trans    &trans       &none &trans
+          &none     &none     &none     &none     &sk HYP         &none    &kp HOME     &kp PG_DN         &kp PG_UP         &kp END
+          &sk LCTRL &sk LALT  &sk LGUI  &sk LSHFT &kp LS(tab)     &kp tab  &kp LEFT     &kp DOWN          &kp UP            &kp RIGHT
+          &to NAV   &kp LG(X) &kp LG(C) &kp LG(V) &kp del         &none    &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT)) &kp LA(RIGHT)
+                                        &trans    &to FUN         &kp LOCK &trans
         >;
 		  };
 		
       // 5 - media functions etc.
 		  fun {
         bindings = <
-          &none       &kp C_BRI_DEC &none      &kp C_BRI_INC &none       &none   &none   &none &none &kp LG(LC(Q))
+          &none       &kp C_BRI_DEC &none      &kp C_BRI_INC &none       &none   &none   &none &none &none
           &none       &kp C_PREV    &kp C_PP   &kp C_NEXT    &none       &none   &none   &none &none &none
           &bootloader &kp C_VOL_DN  &kp C_MUTE &kp C_VOL_UP  &none       &none   &none   &none &none &bootloader
                                                &to ZOF       &to ZOF     &to ZOF &to ZOF
