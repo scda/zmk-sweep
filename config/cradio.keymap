@@ -8,6 +8,14 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+// timeouts
+#define COMBO_TIMEOUT 100
+#define DEFAULT_TAP_TERM 200
+#define DOUBLE_TAP_TERM 300
+#define MOD_TAP_TERM DEFAULT_TAP_TERM
+#define LAYER_TAP_TERM 200
+#define QUICK_TAP_TERM 125
+#define STICKY_KEYS_TIMEOUT 2000
 
 // layers
 #define ZOF 0
@@ -15,10 +23,14 @@
 #define FN 2
 #define SYM 3
 #define NAV 4
-#define FUN 5
+#define LNAV 5
+#define FUN 6
 
 // modifier combinations
 #define HYP LG(LS(LA(LCTRL)))
+
+// special mac combinations
+#define LOCK LG(LC(Q))
 
 // mod-tap combinations
 #define CH LCTRL H
@@ -31,6 +43,7 @@
 #define GR LGUI R
 #define ST LSHFT T
 
+// helper for easier and shorter combo definitions 
 #define COMBO(NAME, BINDINGS, TIMEOUT, KEYPOS) \
   combo_##NAME { \
     timeout-ms = <TIMEOUT>; \
@@ -42,7 +55,7 @@
 // mod-tap config
 &mt {
   flavor = "tap-preferred";
-  tapping_term_ms = <300>;
+  tapping_term_ms = <MOD_TAP_TERM>;
 };
 
 // caps-word config
@@ -52,7 +65,7 @@
 
 // sticky-key config
 &sk {
-    release-after-ms = <2000>;
+    release-after-ms = <STICKY_KEYS_TIMEOUT>;
 };
 
 / {
@@ -67,23 +80,14 @@
   
     combos {
       compatible = "zmk,combos";
-      
-      // do not use home-row-mod keys (10-13 + 16-19)
-      COMBO(funl, &to FUN, 100, 0 4)
-      COMBO(funr, &to FUN, 100, 5 9)
-      
-      COMBO(hypr, &sk HYP, 100, 4 5)
-      COMBO(caps, &caps_word, 100, 20 29)
-      
-      COMBO(undo, &kp LG(Z), 100, 0 9)
-      COMBO(cut, &kp LG(X), 100, 1 8)
-      COMBO(copy, &kp LG(C), 100, 2 7)
-      COMBO(past, &kp LG(V), 100, 3 6)
-      
-      COMBO(tab, &kp TAB, 100, 14 15)
-      COMBO(del, &kp DEL, 100, 24 25)
-      COMBO(minus, &kp MINUS, 100, 23 26)
-      COMBO(underscore, &kp UNDER, 100, 22 27)
+
+      COMBO(hypr, &sk HYP, COMBO_TIMEOUT, 4 5)
+      COMBO(caps, &caps_word, COMBO_TIMEOUT, 20 29)
+      COMBO(undo, &kp LG(Z), COMBO_TIMEOUT, 0 9)
+      COMBO(tab, &kp TAB, COMBO_TIMEOUT, 14 15)
+      COMBO(del, &kp DEL, COMBO_TIMEOUT, 24 25)
+      COMBO(minus, &kp MINUS, COMBO_TIMEOUT, 23 26)
+      COMBO(underscore, &kp UNDER, COMBO_TIMEOUT, 22 27)
     };
 
     behaviors {
@@ -92,39 +96,17 @@
         label = "GLOBAL_QUICK_TAP";
         #binding-cells = <2>;
         flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <125>;
+        tapping-term-ms = <DEFAULT_TAP_TERM>;
+        quick-tap-ms = <QUICK_TAP_TERM>;
         global-quick-tap;
         bindings = <&kp>, <&kp>;
-      };
-
-      lmt: left_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "LEFT_POSITIONAL_HOLD_TAP";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <150>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36>;
-      };
-
-      rmt: right_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "RIGHT_POSITIONAL_HOLD_TAP";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <150>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;
       };
 
       tddc: dot-tap-dance {
         compatible = "zmk,behavior-tap-dance";
         label = "DOT_TAP_DANCE";
         #binding-cells = <0>;
-        tapping-term-ms = <300>;
+        tapping-term-ms = <DOUBLE_TAP_TERM>;
         bindings = <&kp DOT>, <&kp COLON>, <&tridot>;
       };
 
@@ -132,7 +114,7 @@
         compatible = "zmk,behavior-tap-dance";
         label = "COM_TAP_DANCE";
         #binding-cells = <0>;
-        tapping-term-ms = <300>;
+        tapping-term-ms = <DOUBLE_TAP_TERM>;
         bindings = <&kp COMMA>, <&kp SEMI>;
       };
     };
@@ -144,9 +126,9 @@
       zof {
         bindings = <
           &kp ESC  &kp Z   &kp O   &kp F       &kp Y        &kp V    &kp G        &kp C   &kp L   &kp SLASH
-          &lmt CH  &lmt AA &lmt GE &lmt SI     &kp U        &kp D    &rmt ST      &rmt GR &rmt AN &rmt CS
+          &mt CH   &mt AA  &mt GE  &mt SI      &kp U        &kp D    &mt ST       &mt GR  &mt AN  &mt CS
           &tdcs    &kp Q   &kp J   &kp K       &kp X		    &kp B    &kp P        &kp W   &kp M   &tddc
-                                   &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP 
+                                   &lt NUM SPC &kp RET      &kp LSFT &lt SYM BKSP
         >;
 		  };
 
@@ -175,7 +157,7 @@
         bindings = <
           &kp PIPE &kp DLLR  &kp LBRC &kp RBRC &kp PRCNT      &kp KP_PLUS  &kp LT    &kp GT   &kp TILDE &kp CARET
           &kp EXCL &kp QMARK &kp LPAR &kp RPAR &kp ASTRK      &kp KP_EQUAL &sk LSHFT &sk LGUI &sk LALT  &sk LCTRL
-          &kp BSLH &kp AMPS  &kp LBKT &kp RBKT &kp HASH     	&kp AT       &kp DQT   &kp SQT  &kp GRAVE &kp LA(LS(N2))
+          &kp BSLH &kp AMPS  &kp LBKT &kp RBKT &kp HASH       &kp AT       &kp DQT   &kp SQT  &kp GRAVE &kp LA(LS(N2))
                                       &mo NAV  &trans         &trans       &trans 
         >;
 		  };	
@@ -183,17 +165,28 @@
       // 4 - navigation
 		  nav {
         bindings = <
-          &kp LG(NUBS) &none    &none    &none     &none        &none &kp HOME     &kp PG_DN         &kp PG_UP            &kp END
-          &sk LCTRL    &sk LALT &sk LGUI &sk LSHFT &sk HYP      &none &kp LEFT     &kp DOWN          &kp UP               &kp RIGHT
-          &none        &none    &none    &none     &none        &none &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT))    &kp LA(RIGHT)
-                                         &trans    &trans       &none &trans
+          &none     &none     &none     &none     &sk HYP         &none    &kp HOME     &kp PG_DN         &kp PG_UP         &kp END
+          &sk LCTRL &sk LALT  &sk LGUI  &sk LSHFT &kp LS(TAB)     &kp TAB  &kp LEFT     &kp DOWN          &kp UP            &kp RIGHT
+          &to LNAV  &kp LG(X) &kp LG(C) &kp LG(V) &kp DEL         &none    &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT)) &kp LA(RIGHT)
+                                        &trans    &to FUN         &kp LOCK &trans
+        >;
+		  };
+
+      // 4 - lockable reduced navigation layer (workaround)
+      // can be removed, when there's a solution for https://github.com/zmkfirmware/zmk/issues/1299
+		  lnav {
+        bindings = <
+          &none     &none    &none    &none     &none         &none   &kp HOME     &kp PG_DN         &kp PG_UP         &kp END
+          &sk LCTRL &sk LALT &sk LGUI &sk LSHFT &none         &none   &kp LEFT     &kp DOWN          &kp UP            &kp RIGHT
+          &none     &none    &none    &none     &none         &none   &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT)) &kp LA(RIGHT)
+                                      &to ZOF   &to ZOF       &to ZOF &to ZOF
         >;
 		  };
 		
       // 5 - media functions etc.
 		  fun {
         bindings = <
-          &none       &kp C_BRI_DEC &none      &kp C_BRI_INC &none       &none   &none   &none &none &kp LG(LC(Q))
+          &none       &kp C_BRI_DEC &none      &kp C_BRI_INC &none       &none   &none   &none &none &none
           &none       &kp C_PREV    &kp C_PP   &kp C_NEXT    &none       &none   &none   &none &none &none
           &bootloader &kp C_VOL_DN  &kp C_MUTE &kp C_VOL_UP  &none       &none   &none   &none &none &bootloader
                                                &to ZOF       &to ZOF     &to ZOF &to ZOF
