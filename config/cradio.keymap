@@ -173,6 +173,7 @@
 		  };
 
       // 4 - lockable reduced navigation layer (workaround)
+      // can be removed, when there's a solution for https://github.com/zmkfirmware/zmk/issues/1299
 		  lnav {
         bindings = <
           &none     &none    &none    &none     &none         &none   &kp HOME     &kp PG_DN         &kp PG_UP         &kp END
