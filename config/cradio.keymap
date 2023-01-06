@@ -165,8 +165,8 @@
 		  nav {
         bindings = <
           &none     &none     &none     &none     &sk HYP         &none    &kp HOME     &kp PG_DN         &kp PG_UP         &kp END
-          &sk LCTRL &sk LALT  &sk LGUI  &sk LSHFT &kp LS(tab)     &kp tab  &kp LEFT     &kp DOWN          &kp UP            &kp RIGHT
-          &to NAV   &kp LG(X) &kp LG(C) &kp LG(V) &kp del         &none    &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT)) &kp LA(RIGHT)
+          &sk LCTRL &sk LALT  &sk LGUI  &sk LSHFT &kp LS(TAB)     &kp TAB  &kp LEFT     &kp DOWN          &kp UP            &kp RIGHT
+          &to NAV   &kp LG(X) &kp LG(C) &kp LG(V) &kp DEL         &none    &kp LA(LEFT) &kp LA(LS(LEFT))  &kp LA(LS(RIGHT)) &kp LA(RIGHT)
                                         &trans    &to FUN         &kp LOCK &trans
         >;
 		  };
